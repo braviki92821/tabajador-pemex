@@ -1,0 +1,27 @@
+extends ../layout/index
+
+block contenido
+    div.py-10.bg-gray-500
+
+        if errores
+            div(class="max-w-md mx-auto my-10")
+                each error in errores
+                     p.bg-red-600.text-white.uppercase.text-xs.text-center.p-2.mb-1.font-bold= error.msg
+
+        div.mt-8.mx-auto.max-w-md
+            .bg-gray-300.py-8.px-4.shadow.rounded-lg
+                div(class="flex justify-center items-center")
+                    img(src="/img/logo.png" alt="logo.png" class="content-center")
+                h2.text-center.text-2xl.font-extrabold= pagina 
+                form.space-y-5(method="POST" action="/auth/login")
+                    input(type="hidden" name="_csrf" value=csrfToken)
+                    div
+                        label.block.text-sm.uppercase.text-black.mb-2.font-bold(for="email") Correo
+                        input#email.w-full.px-3.py-2.border.border-gray-600.rounded-md.placeholder-gray-400(placeholder="Tu correo institucional" type="email" name="email")
+                    div
+                        label.block.text-sm.uppercase.text-black.mb-2.font-bold(for="password") Password
+                        input#password.w-full.px-3.py-2.border.border-gray-600.rounded-md.placeholder-gray-400(placeholder="Tu password" type="password" name="password")
+                    div.flex.items-center.justify-between
+                        a.text-black-500.text-xs(href="/auth/olvide-password") Olvide mi contraseña
+                    
+                    input(class="w-full bg-indigo-600 rounded-md hover:bg-indigo-700 text-white font-bold py-3 cursor-pointer" type="submit", value="Iniciar Sesión")

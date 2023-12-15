@@ -1,0 +1,49 @@
+extends ../layout/app
+
+block contenido
+
+    h1(class="text-center font-extrabold text-2xl") Empleados
+    if errores
+        div(class="max-w-md mx-auto my-10")
+            each error in errores
+                 p.bg-red-600.text-white.uppercase.text-xs.text-center.p-2.mb-1.font-bold= error.msg
+    div(class="flex justify-center items-center mt-6")
+        div(class="flex lg:flex-row gap-3 items-baseline")
+            label(for="termino" class="text-sm uppercase font-bold text-white") Buscar Por Ficha
+            input(type="number" id="termino" name="termino" placeholder="Buscar" class="p-2 shadow text-sm")
+            input(type="button" value="Buscar" id="buscar" name="buscar" class="bg-indigo-800 rounded-sm hover:bg-indigo-400 text-white uppercase font-bold p-2 cursor-pointer text-sm")
+    div(class="flex flex-col mt-8")
+       div(class="overflow-x-auto sm:-mx-6 lg:-mx-8")
+            div(class="inline-block min-w-full py-2 sm:px-6 lg:px-8")
+                div(class="overflow-hidden")
+                    if empleados.length
+                        table(class="min-w-full text-left text-sm font-light")
+                            thead(class="border-b bg-neutral-800 font-medium text-white dark:border-neutral-500 dark:bg-neutral-900")
+                                tr
+                                    th(scope="col" class="px-6 py-4") Ficha
+                                    th(scope="col" class="px-6 py-4") Nombre
+                                    th(scope="col" class="px-6 py-4") Correo
+                                    th(scope="col" class="px-6 py-4") Categoria
+                                    th(scope="col" class="px-6 py-4") Estatus
+                                    th(scope="col" class="px-6 py-4") RFC 
+                                    th(scope="col" class="px-6 py-4") Acciones
+                            tbody
+                                each empleado in empleados
+                                    tr(class="border bg-neutral-300 border-black") 
+                                        td(class="whitespace-nowrap border border-black px-6 py-4")= empleado.ficha                          
+                                        td(class="whitespace-nowrap border border-black px-6 py-4")= empleado.nombre  
+                                        td(class="whitespace-nowrap border border-black px-6 py-4")= empleado.correo
+                                        td(class="whitespace-nowrap border border-black px-6 py-4")= empleado.categoria
+                                        td(class="whitespace-nowrap border border-black px-6 py-4")= empleado.estatus
+                                        td(class="whitespace-nowrap border border-black px-6 py-4")= empleado.rfc
+                                        td(class="whitespace-nowrap border border-black px-6 py-4")
+                                            a(href=`/admin/editar-trabajador/${empleado.ficha} ` class="text-center bg-green-600 w-full block rounded-sm") Ver
+                                            a(href=`/admin/editar-trabajador/${empleado.ficha} ` class="text-center mt-2 bg-orange-600 w-full block rounded-sm") Editar
+                                            a(class="btn-eliminar text-center cursor-pointer bg-red-600 w-full block rounded-sm mt-2" data-empleado-ficha=empleado.ficha ) Eliminar
+                        include ../templates/modal                     
+                    else 
+                        p(class="text-center font-bold text-md") Sin Resultados 
+block scripts
+    script(src="/js/busqueda.js")
+    script(src="/js/sidebar.js")
+    script(src="/js/alpinejs.js")  

@@ -1,0 +1,67 @@
+nav(class="sticky top-0 flex-no-wrap flex w-full items-center justify-between py-2 shadow-md  bg-neutral-600 shadow-black/10 lg:flex-wrap lg:justify-start lg:py-4")
+    div(class="flex w-full flex-wrap items-center justify-between px-3")
+        a(class="mb-4 ml-2 mr-5 mt-3 flex items-center text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400 lg:mb-0 lg:mt-0") 
+            img(src="/img/logo.png" class="w-36"  style="height: 65px" alt="logo.png")
+        div(class="responsive !visible hidden flex-grow basis-[100%] items-center lg:!flex lg:basis-auto" id="navbarSupportedContent12" data-te-collapse-item)
+            ul(class="list-style-none mr-auto flex flex-col pl-0 lg:flex-row" data-te-navbar-nav-ref)
+                li(class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref)
+                    
+        div(class="relative flex items-center"  data-te-dropdown-ref data-te-dropdown-alignment="end")
+                form(action="/auth/cerrar-sesion" method="POST")
+                    input(type="hidden" name="_csrf" value=csrfToken) 
+                    input(type="submit" class="text-sm font-bold relative flex items-center text-white lg:pr-2 cursor-pointer" value="Cerrar Sesion")         
+
+aside(class="fixed !visible  top-auto  h-screen sm:w-30 bg-[#2e2075] text-white w-56 min-h-screen p-4")
+    nav
+        ul(class="space-y-2")
+            li
+                div(class="flex items-center justify-between p-2 hover:bg-gray-700")
+                    a(href="/admin/inicio" class="flex items-center ")
+                        i(class="fa fa-bars mr-2")
+                        span Inicio      
+            li(class="li-desplegable")
+                div(class="flex items-center justify-between p-2 hover:bg-gray-700")
+                    div(class="flex items-center")
+                        i(class="fa fa-user mr-2")
+                        span Perfil      
+                    i(class="fas fa-chevron-down text-xs")  
+                ul(class="desplegable ml-4 hidden")
+                    li
+                        a(href="/admin/perfil" class="block p-2 hover:bg-gray-700 items-center ")
+                            i(class="fas fa-chevron-right") 
+                                span(class="text-md mr-2") Tus Datos
+                    li
+                        a(href="/auth/reset-password" class="block p-2 hover:bg-gray-700 items-center ")
+                            i(class="fas fa-chevron-right") 
+                                span(class="text-md mr-2") Cambio de contraseña                   
+            li(class="li-desplegable")
+                div(class="flex items-center justify-between p-2 hover:bg-gray-700")
+                    div(class="flex items-center")
+                        i(class="fa fa-users mr-2")
+                        span Usuarios      
+                    i(class="fas fa-chevron-down text-xs")  
+                ul(class="desplegable ml-4 hidden")
+                    li
+                        a(href="/auth/nuevo-usuario" class="block p-2 hover:bg-gray-700 items-center ")
+                            i(class="fas fa-chevron-right") 
+                                span(class="text-md mr-2") Crear Usuario
+                    li
+                        a(href="/admin/usuarios" class="block p-2 hover:bg-gray-700 items-center ")
+                            i(class="fas fa-chevron-right") 
+                                span(class="text-md mr-2") Lista de Usuarios
+            li(class="li-desplegable")
+                div(class="flex items-center justify-between p-2 hover:bg-gray-700")
+                    div(class="flex items-center")
+                        a(href="/admin/" )
+                        i(class="fa fa-user-friends mr-2")
+                        span Empleados    
+                    i(class="fas fa-chevron-down text-xs")
+                ul(class="desplegable ml-4 hidden")
+                    li
+                        a(href="/admin/agregar-empleado" class="block p-2 hover:bg-gray-700  items-center ")
+                            i(class="fas fa-chevron-right") 
+                                span(class="text-md mr-2") Añadir Empleado
+                    li
+                        a(href="/admin/lista-empleados?mostrar=todo" class="block p-2 hover:bg-gray-700 items-center ")
+                            i(class="fas fa-chevron-right") 
+                                span(class="text-md mr-2") lista-Empleados

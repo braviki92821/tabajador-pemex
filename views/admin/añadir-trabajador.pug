@@ -1,0 +1,51 @@
+extends ../layout/app
+
+block contenido
+
+    div(class="mt-8 mx-auto max-w-screen-md")
+        div(class="bg-gray-200 py-8 px-4 shadow")
+            h1(class="text-center mt-5 font-bold text-2xl")=pagina
+            if errores
+                div(class="max-w-md mx-auto my-10")
+                    each error in errores
+                         p.bg-red-600.text-white.uppercase.text-xs.text-center.p-2.mb-1.font-bold= error.msg
+            form(class="space-y-5" action="/admin/agregar-empleado" method="POST")
+                input(type="hidden" name="_csrf" value=csrfToken)
+                div(class="grid grid-cols-2 space-x-5")
+                    div 
+                        label(class="block text-sm uppercase text-gray-900 mb-2 font-bold" for="ficha") Num. Ficha
+                        input(class="w-full px-3 py-2 border border-gray-600 rounded-md placeholder-gray-400" type="number" name="ficha" value=datos.ficha )
+                    div
+                        label(class="block text-sm uppercase text-gray-900 mb-2 font-bold" for="titulo") Nombre
+                        input(class="w-full px-3 py-2 border border-gray-600 rounded-md placeholder-gray-400" type="text" name="nombre" value=datos.nombre )
+                div(class="grid grid-cols-2 space-x-5")
+                    div     
+                        label(class="block text-sm uppercase text-gray-900 mb-2 font-bold" for="titulo") Correo
+                        input(class="w-full px-3 py-2 border border-gray-600 rounded-md placeholder-gray-400" type="email"  name="correo" value=datos.correo)
+                    div
+                        label(class="block text-sm uppercase text-gray-900 mb-2 font-bold" for="titulo") Categoria
+                        input(class="w-full px-3 py-2 border border-gray-600 rounded-md placeholder-gray-400" type="text"  name="categoria" value=datos.categoria)
+                div(class="grid grid-cols-2 space-x-5")
+                    div
+                        label(class="block text-sm uppercase text-gray-900 mb-2 font-bold" for="nombre") Nivel
+                        input(class="w-full px-3 py-2 border border-gray-600 rounded-md placeholder-gray-400" type="number" name="nivel" value=datos.nivel )
+                    div
+                        label(class="block text-sm uppercase text-gray-900 mb-2 font-bold" for="titulo") Estatus
+                        input(class="w-full px-3 py-2 border border-gray-600 rounded-md placeholder-gray-400" type="text"  name="estatus" value=datos.estatus)
+                div(class="grid grid-cols-2 space-x-5")
+                    div 
+                        label(class="block text-sm uppercase text-gray-900 mb-2 font-bold" for="titulo") Edad
+                        input(class="w-full  px-3 py-2 border border-gray-600 rounded-md placeholder-gray-400" type="number"  name="edad" value=datos.edad)
+                    div 
+                        label(class="block text-sm uppercase text-gray-900 mb-2 font-bold" for="titulo") Antiguedad
+                        input(class="w-full px-3 py-2 border border-gray-600 rounded-md placeholder-gray-400" type="number" name="antiguedad" value=datos.antiguedad)
+                div(class="grid grid-cols-2 space-x-5")
+                    div 
+                        label(class="block text-sm uppercase text-gray-900 mb-2 font-bold" for="titulo") RFC
+                        input(class="w-full  px-3 py-2 border border-gray-600 rounded-md placeholder-gray-400" type="text"  name="rfc" value=datos.rfc)
+                    div 
+                        label(class="block text-sm uppercase text-gray-900 mb-2 font-bold" for="titulo") Direccion
+                        input(class="w-full px-3 py-2 border border-gray-600 rounded-md placeholder-gray-400" type="text" name="direccion" value=datos.direccion)
+                input(class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 cursor-pointer" type="submit", value="Agregar Empleado")
+block scripts
+    script(src="/js/sidebar.js") 
